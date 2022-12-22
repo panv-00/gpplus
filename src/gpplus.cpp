@@ -1,12 +1,8 @@
-#include "BrainCell.h"
-#include "Brain.h"
-#include "Agent.h"
-#include "Game.h"
-#include "Food.h"
+#include "Gui.h"
 
 int main(int argc, char *argv[])
 {
-  Game game;
+  Gui gui;
 
-  return game.Run();
+  return gui.Run();
 }

@@ -1,7 +1,6 @@
 #ifndef WALL_H
 #define WALL_H
 
-#include <stdio.h>
 #include "definitions.h"
 
 class Wall

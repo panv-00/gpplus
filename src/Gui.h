@@ -1,18 +1,16 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <stdio.h>
-
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
 
-#include "Agent.h"
 #include "definitions.h"
+#include "Game.h"
 
 class Gui
 {
 public:
-  Gui(Agent *agents);
+  Gui();
   ~Gui();
 
   int Run();
@@ -20,12 +18,14 @@ public:
 protected:
 
 private:
+  Game *game;
+
   int scc(int code);
 
   void sdl_set_color_hex(Uint32 hex);
   void render_grid();
   void render_agent(Agent agent);
-  void render_all_agents(Agent *agents);
+  void render_game();
 
   float agents_dir[4][6] =  
   {

@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Gui.h"
 
 Game::Game()
 {
@@ -59,12 +58,3 @@ void Game::init_agents(void)
   }
 }
 
-int Game::Run()
-{
-  init_agents();
-  Gui gui(agents);
-
-  gui.Run();
-
-  return 0;
-}

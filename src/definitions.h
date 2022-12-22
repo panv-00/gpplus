@@ -1,6 +1,9 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #define BACKGROUND_COLOR 0x2a3d45ff
 #define GRID_COLOR       0x7a6c5dff
 #define AGENT_COLOR      0xda2c38ff
@@ -18,6 +21,7 @@
 #define AGENT_PADDING 15.0f
 
 #define FOODS_COUNT 10
+#define WALLS_COUNT 4
 
 typedef enum
 {

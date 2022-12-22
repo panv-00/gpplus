@@ -1,7 +1,6 @@
 #ifndef AGENT_H
 #define AGENT_H
 
-#include <stdio.h>
 #include "definitions.h"
 
 class Agent

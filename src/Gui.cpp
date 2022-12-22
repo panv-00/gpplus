@@ -1,14 +1,11 @@
 #include "Gui.h"
 
-Gui::Gui(Agent *agents)
+Gui::Gui()
 {
+  game = new Game();
+
   scc(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS));
   scc(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer));
-  sdl_set_color_hex(BACKGROUND_COLOR);
-  scc(SDL_RenderClear(renderer));
-  render_grid();
-  render_all_agents(agents);
-  SDL_RenderPresent(renderer);
 }
 
 Gui::~Gui()
@@ -16,6 +13,8 @@ Gui::~Gui()
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
+
+  delete game;
 }
 
 int Gui::scc(int code)
@@ -93,16 +92,24 @@ void Gui::render_agent(Agent agent)
 
 }
 
-void Gui::render_all_agents(Agent *agents)
+void Gui::render_game()
 {
   for (size_t i = 0; i < AGENTS_COUNT; ++i)
   {
-    render_agent(agents[i]);
+    render_agent(game->get_agent(i));
   }
 }
 
 int Gui::Run()
 {
+  game->init_agents();
+
+  sdl_set_color_hex(BACKGROUND_COLOR);
+  scc(SDL_RenderClear(renderer));
+  render_grid();
+  render_game();
+  SDL_RenderPresent(renderer);
+
   SDL_bool quit = SDL_FALSE;
   
   while (!quit)
