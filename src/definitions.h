@@ -17,4 +17,14 @@
 #define AGENTS_COUNT 21
 #define AGENT_PADDING 15.0f
 
+typedef enum
+{
+  DIR_RT = 0,
+  DIR_UP,
+  DIR_LT,
+  DIR_DN
+
+} Dir;
+
+
 #endif

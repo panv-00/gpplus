@@ -4,16 +4,6 @@
 #include <stdio.h>
 #include "definitions.h"
 
-
-typedef enum
-{
-  DIR_RT = 0,
-  DIR_UP,
-  DIR_LT,
-  DIR_DN
-
-} Dir;
-
 class Agent
 {
 public:
