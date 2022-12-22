@@ -62,7 +62,7 @@ void Game::init_agents(void)
 int Game::Run()
 {
   init_agents();
-  Gui gui(&agents[0]);
+  Gui gui(agents);
 
   gui.Run();
 

@@ -7,7 +7,7 @@ Gui::Gui(Agent *agents)
   sdl_set_color_hex(BACKGROUND_COLOR);
   scc(SDL_RenderClear(renderer));
   render_grid();
-  render_all_agents(&agents[0]);
+  render_all_agents(agents);
   SDL_RenderPresent(renderer);
 }
 
@@ -79,14 +79,14 @@ void Gui::render_grid()
   }
 }
 
-void Gui::render_agent(Agent *agent)
+void Gui::render_agent(Agent agent)
 {
-  float x1 = agents_dir[agent->get_dir()][0] * (CELL_WIDTH - AGENT_PADDING * 2) + agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
-  float y1 = agents_dir[agent->get_dir()][1] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
-  float x2 = agents_dir[agent->get_dir()][2] * (CELL_WIDTH - AGENT_PADDING * 2) + agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
-  float y2 = agents_dir[agent->get_dir()][3] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
-  float x3 = agents_dir[agent->get_dir()][4] * (CELL_WIDTH - AGENT_PADDING * 2) + agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
-  float y3 = agents_dir[agent->get_dir()][5] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+  float x1 = agents_dir[agent.get_dir()][0] * (CELL_WIDTH - AGENT_PADDING * 2) + agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+  float y1 = agents_dir[agent.get_dir()][1] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+  float x2 = agents_dir[agent.get_dir()][2] * (CELL_WIDTH - AGENT_PADDING * 2) + agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+  float y2 = agents_dir[agent.get_dir()][3] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+  float x3 = agents_dir[agent.get_dir()][4] * (CELL_WIDTH - AGENT_PADDING * 2) + agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+  float y3 = agents_dir[agent.get_dir()][5] * (CELL_HEIGHT - AGENT_PADDING * 2) + agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
 
   filledTrigonColor(renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
   aatrigonColor(renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
@@ -97,7 +97,7 @@ void Gui::render_all_agents(Agent *agents)
 {
   for (size_t i = 0; i < AGENTS_COUNT; ++i)
   {
-    render_agent(&agents[i]);
+    render_agent(agents[i]);
   }
 }
 
