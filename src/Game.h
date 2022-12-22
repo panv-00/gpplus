@@ -13,7 +13,8 @@ public:
   Game();
   ~Game();
 
-  void init_agents(void);
+  void init_game();
+  void step_game();
   Agent get_agent(int i) { return agents[i]; };
 
 protected:

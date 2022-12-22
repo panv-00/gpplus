@@ -50,11 +50,16 @@ Agent Game::random_agent(int index)
   return agent;
 }
 
-void Game::init_agents(void)
+void Game::init_game()
 {
   for (size_t i = 0; i < AGENTS_COUNT; ++i)
   {
     agents[i] = random_agent(i);
   }
+}
+
+void Game::step_game()
+{
+  // Do nothing for now
 }
 
