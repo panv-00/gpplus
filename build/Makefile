@@ -1,6 +1,6 @@
 CPP=g++
 PKGS=sdl2 SDL2_gfx
-CFLAGS=-Wall -O3 -g -ggdb -pedantic `pkg-config --cflags $(PKGS)`
+CFLAGS=-Wall -O3 -g -pedantic `pkg-config --cflags $(PKGS)`
 LIBS=`pkg-config --libs $(PKGS)` -lm
 VPATH=../src
 
@@ -23,4 +23,4 @@ default: $(OBJECTS)
 		$(LIBS)
 
 %.o: %.cpp %.h $(DEPLIST)
-	$(CPP) -c $< -o $*.o $(CFLAGS) $(LIBS)
+	$(CPP) -c $< -o $*.o $(CFLAGS)
