@@ -21,12 +21,31 @@ Dir Game::random_dir(void)
   return (Dir) random_int_range(0, 4);
 }
 
-Agent Game::random_agent(void)
+Agent Game::random_agent(int index)
 {
   Agent agent;
-  agent.set_pos_x (random_int_range(0, BOARD_WIDTH));
-  agent.set_pos_y (random_int_range(0, BOARD_HEIGHT));
-  agent.set_dir (random_dir());
+  bool available = false;
+  int x, y;
+  
+  while (!available)
+  {
+    x = random_int_range(0, BOARD_WIDTH);
+    y = random_int_range(0, BOARD_HEIGHT);
+    available = true;
+
+    for (int i = 0; i < index; i++)
+    {
+      if (agents[i].get_pos_x() == x && agents[i].get_pos_y() == y)
+      {
+        available = false;
+        break;
+      }
+    }
+  }
+
+  agent.set_pos_x(x);
+  agent.set_pos_y(y);
+  agent.set_dir(random_dir());
 
   return agent;
 }
@@ -35,7 +54,7 @@ void Game::init_agents(void)
 {
   for (size_t i = 0; i < AGENTS_COUNT; ++i)
   {
-    agents[i] = random_agent();
+    agents[i] = random_agent(i);
   }
 }
 
