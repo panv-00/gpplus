@@ -1,5 +1,7 @@
 CPP=g++
-CFLAGS=-Wall -O3 -g
+PKGS=sdl2 SDL2_gfx
+CFLAGS=-Wall -O3 -g -ggdb -pedantic `pkg-config --cflags $(PKGS)`
+LIBS=`pkg-config --libs $(PKGS)` -lm
 VPATH=../src
 
 OBJECTS= \
@@ -13,7 +15,8 @@ OBJECTS= \
 default: $(OBJECTS)
 	$(CPP) -o ../gpplus ../src/gpplus.cpp \
 		$(OBJECTS) \
-		$(CFLAGS)
+		$(CFLAGS) \
+		$(LIBS)
 
 %.o: %.cpp %.h
 	$(CPP) -c $< -o $*.o $(CFLAGS)

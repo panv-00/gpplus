@@ -7,6 +7,9 @@
 
 int main(int argc, char *argv[])
 {
+  Gui gui;
+
+  gui.Run();
 
   return 0;
 }
