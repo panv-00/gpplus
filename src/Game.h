@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "Agent.h"
+#include "Food.h"
 #include "definitions.h"
 
 class Game
@@ -24,6 +25,7 @@ private:
   void init_agents(void);
   
   Agent agents[AGENTS_COUNT];
+  Food foods[FOODS_COUNT];
 };
 
 #endif

@@ -8,14 +8,16 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 
-#define BOARD_WIDTH 15
-#define BOARD_HEIGHT 15
+#define BOARD_WIDTH 12
+#define BOARD_HEIGHT 12
 
 #define CELL_WIDTH ((float) SCREEN_WIDTH / BOARD_WIDTH)
 #define CELL_HEIGHT ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
 #define AGENTS_COUNT 21
 #define AGENT_PADDING 15.0f
+
+#define FOODS_COUNT 10
 
 typedef enum
 {

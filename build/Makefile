@@ -11,6 +11,10 @@ OBJECTS= \
 	Agent.o \
 	Game.o \
 	Food.o \
+	Wall.o \
+
+DEPLIST= \
+	definitions.h
 
 default: $(OBJECTS)
 	$(CPP) -o ../gpplus ../src/gpplus.cpp \
@@ -18,5 +22,5 @@ default: $(OBJECTS)
 		$(CFLAGS) \
 		$(LIBS)
 
-%.o: %.cpp %.h
+%.o: %.cpp %.h $(DEPLIST)
 	$(CPP) -c $< -o $*.o $(CFLAGS)

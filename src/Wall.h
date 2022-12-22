@@ -1,19 +1,18 @@
-#ifndef FOOD_H
-#define FOOD_H
+#ifndef WALL_H
+#define WALL_H
 
 #include <stdio.h>
 #include "definitions.h"
 
-class Food
+class Wall
 {
 public:
-  Food();
-  ~Food();
+  Wall();
+  ~Wall();
 
 protected:
 
 private:
-  bool eaten;
   int pos_x, pos_y;
 };
 
