@@ -2,6 +2,7 @@
 #define BRAIN_H
 
 #include <stdio.h>
+#include "definitions.h"
 
 class Brain
 {

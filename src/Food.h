@@ -2,6 +2,7 @@
 #define FOOD_H
 
 #include <stdio.h>
+#include "definitions.h"
 
 class Food
 {

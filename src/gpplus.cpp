@@ -1,4 +1,3 @@
-#include "Gui.h"
 #include "BrainCell.h"
 #include "Brain.h"
 #include "Agent.h"
@@ -7,9 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-  Gui gui;
+  Game game;
 
-  gui.Run();
-
-  return 0;
+  return game.Run();
 }
