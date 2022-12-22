@@ -23,9 +23,10 @@ Dir Game::random_dir(void)
 
 Agent Game::random_agent(int index)
 {
-  Agent agent;
   bool available = false;
   int x, y;
+  
+  Agent agent;
   
   while (!available)
   {
