@@ -23,4 +23,4 @@ default: $(OBJECTS)
 		$(LIBS)
 
 %.o: %.cpp %.h $(DEPLIST)
-	$(CPP) -c $< -o $*.o $(CFLAGS)
+	$(CPP) -c $< -o $*.o $(CFLAGS) $(LIBS)
