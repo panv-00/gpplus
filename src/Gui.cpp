@@ -111,9 +111,25 @@ void Gui::render_agent(Agent agent)
 
 void Gui::render_game()
 {
-  for (size_t i = 0; i < AGENTS_COUNT; ++i)
+  // Render Agents
+  for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
     render_agent(game->get_agent(i));
+  }
+
+  //Render Walls
+  for (size_t i = 0; i < WALLS_COUNT; i++)
+  {
+    SDL_Rect rect =
+    {
+      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH),
+      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT),
+      (int) floorf(CELL_WIDTH),
+      (int) floorf(CELL_HEIGHT)
+    };
+    
+    sdl_set_color_hex(WALL_COLOR);
+    SDL_RenderFillRect(renderer, &rect);
   }
 }
 
