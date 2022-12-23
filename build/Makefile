@@ -6,8 +6,8 @@ VPATH=../src
 
 OBJECTS= \
 	Gui.o \
-	BrainCell.o \
-	Brain.o \
+	Gene.o \
+	Chromo.o \
 	Agent.o \
 	Game.o \
 	Point.o \

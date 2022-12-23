@@ -68,6 +68,8 @@ void Game::init_game()
     
     agents[i].set_pos(point);
     agents[i].set_dir((Dir) random_int_range(0, 4));
+    agents[i].set_hunger(100);
+    agents[i].set_health(100);
     agents_count++;
   }
 

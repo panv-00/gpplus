@@ -120,8 +120,8 @@ void Gui::render_game()
   {
     SDL_Rect rect =
     {
-      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH + WALL_PADDING + 1),
-      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT + WALL_PADDING + 1),
+      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH + WALL_PADDING),
+      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT + WALL_PADDING),
       (int) floorf(CELL_WIDTH - WALL_PADDING * 2),
       (int) floorf(CELL_HEIGHT - WALL_PADDING * 2)
     };

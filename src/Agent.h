@@ -14,6 +14,8 @@ public:
   void set_pos_x(int px) { pos.set_x(px); };
   void set_pos_y(int py) { pos.set_y(py); };
   void set_dir(Dir dr) { dir = dr; };
+  void set_hunger(int h) { hunger = h; };
+  void set_health(int h) { health = h; };
 
   Point get_pos() { return pos; }
   int get_pos_x() { return pos.get_x(); };
@@ -25,6 +27,9 @@ protected:
 private:
   Point pos;
   Dir dir;
+  int hunger;
+  int health;
+  State state;
 };
 
 #endif

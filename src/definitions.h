@@ -8,7 +8,7 @@
 #define BACKGROUND_COLOR 0x2a3d45ff
 #define GRID_COLOR       0x7a6c5dff
 #define AGENT_COLOR      0xda2c38ff
-#define WALL_COLOR       0x544544ff
+#define WALL_COLOR       0x7a6c5dff
 #define FOOD_COLOR       0x87c38fff
 
 #define HEX_COLOR(hex)  \
@@ -20,20 +20,22 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 
-#define BOARD_WIDTH 12
-#define BOARD_HEIGHT 12
+#define BOARD_WIDTH 20
+#define BOARD_HEIGHT 20
 
 #define CELL_WIDTH ((float) SCREEN_WIDTH / BOARD_WIDTH)
 #define CELL_HEIGHT ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
 #define AGENTS_COUNT 21
-#define AGENT_PADDING 15.0f
+#define AGENT_PADDING (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 
 #define FOODS_COUNT 10
-#define FOOD_PADDING 20.0f
+#define FOOD_PADDING (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
 
 #define WALLS_COUNT 21
-#define WALL_PADDING 5.0f
+#define WALL_PADDING 0
+
+#define GENES_COUNT 20
 
 typedef enum
 {
@@ -43,6 +45,28 @@ typedef enum
   DIR_DN
 
 } Dir;
+
+typedef int State;
+
+typedef enum
+{
+  ACTION_NOP = 0,
+  ACTION_STEP,
+  ACTION_EAT,
+  ACTION_ATTACK,
+  ACTION_TURN_LT,
+  ACTION_TURN_RT
+
+} Action;
+
+typedef enum
+{
+  ENV_NOTHING = 0,
+  ENV_AGENT,
+  ENV_FOOD,
+  ENV_WALL
+
+} Env;
 
 
 #endif
