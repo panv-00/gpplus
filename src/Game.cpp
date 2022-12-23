@@ -51,8 +51,8 @@ Point Game::get_free_location()
     }
   }
 
-  point.x = x;
-  point.y = y;
+  point.set_x(x);
+  point.set_y(y);
 
   return point;
 }
@@ -66,8 +66,7 @@ void Game::init_game()
   {
     point = get_free_location();
     
-    agents[i].set_pos_x(point.x);
-    agents[i].set_pos_y(point.y);
+    agents[i].set_pos(point);
     agents[i].set_dir((Dir) random_int_range(0, 4));
     agents_count++;
   }
@@ -77,8 +76,7 @@ void Game::init_game()
   {
     point = get_free_location();
 
-    foods[i].set_pos_x(point.x);
-    foods[i].set_pos_y(point.y);
+    foods[i].set_pos(point);
     foods_count++;
   }
 
@@ -87,8 +85,7 @@ void Game::init_game()
   {
     point = get_free_location();
 
-    walls[i].set_pos_x(point.x);
-    walls[i].set_pos_y(point.y);
+    walls[i].set_pos(point);
     walls_count++;
   }
 }
@@ -97,4 +94,3 @@ void Game::step_game()
 {
   // Do nothing for now
 }
-

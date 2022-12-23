@@ -10,6 +10,7 @@ OBJECTS= \
 	Brain.o \
 	Agent.o \
 	Game.o \
+	Point.o \
 	Food.o \
 	Wall.o \
 

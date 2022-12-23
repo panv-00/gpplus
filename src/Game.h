@@ -3,16 +3,10 @@
 
 #include "definitions.h"
 
+#include "Point.h"
 #include "Agent.h"
 #include "Food.h"
 #include "Wall.h"
-
-typedef struct
-{
-  int x;
-  int y;
-
-} Point;
 
 class Game
 {
