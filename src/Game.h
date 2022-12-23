@@ -26,6 +26,7 @@ public:
 
   Agent get_agent(int i) { return agents[i]; };
   Wall get_wall(int i) { return walls[i]; };
+  Food get_food(int i) { return foods[i]; };
 
 protected:
 

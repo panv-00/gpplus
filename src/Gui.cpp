@@ -28,24 +28,9 @@ int Gui::scc(int code)
   return code;
 }
 
-void Gui::sdl_set_color_hex(Uint32 hex)
-{
-  scc
-  (
-    SDL_SetRenderDrawColor
-    (
-      renderer,
-      (hex >> 24) & 0xff,
-      (hex >> 16) & 0xff,
-      (hex >> 8 ) & 0xff,
-      (hex      ) & 0xff
-    )
-  );
-}
-
 void Gui::render_grid()
 {
-  sdl_set_color_hex(GRID_COLOR);
+  SDL_SetRenderDrawColor(renderer, HEX_COLOR(GRID_COLOR));
 
   for (int x = 1; x < BOARD_WIDTH; ++x)
   {
@@ -117,18 +102,31 @@ void Gui::render_game()
     render_agent(game->get_agent(i));
   }
 
-  //Render Walls
+  // Render Foods
+  for (size_t i = 0; i < FOODS_COUNT; i++)
+  {
+    filledCircleRGBA
+    (
+      renderer,
+      (int) floorf(game->get_food(i).get_pos_x() * CELL_WIDTH + CELL_WIDTH * 0.5f),
+      (int) floorf(game->get_food(i).get_pos_y() * CELL_HEIGHT + CELL_HEIGHT * 0.5f),
+      (int) floorf(fminf(CELL_WIDTH, CELL_HEIGHT) * 0.5f - FOOD_PADDING),
+      HEX_COLOR(FOOD_COLOR)
+    );
+  }
+
+  // Render Walls
   for (size_t i = 0; i < WALLS_COUNT; i++)
   {
     SDL_Rect rect =
     {
-      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH),
-      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT),
-      (int) floorf(CELL_WIDTH),
-      (int) floorf(CELL_HEIGHT)
+      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH + WALL_PADDING),
+      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT + WALL_PADDING),
+      (int) floorf(CELL_WIDTH - WALL_PADDING * 2),
+      (int) floorf(CELL_HEIGHT - WALL_PADDING * 2)
     };
     
-    sdl_set_color_hex(WALL_COLOR);
+    SDL_SetRenderDrawColor(renderer, HEX_COLOR(WALL_COLOR));
     SDL_RenderFillRect(renderer, &rect);
   }
 }
@@ -137,7 +135,7 @@ int Gui::Run()
 {
   game->init_game();
 
-  sdl_set_color_hex(BACKGROUND_COLOR);
+  SDL_SetRenderDrawColor(renderer, HEX_COLOR(BACKGROUND_COLOR));
   scc(SDL_RenderClear(renderer));
   render_grid();
   render_game();
