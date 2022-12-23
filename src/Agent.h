@@ -16,11 +16,13 @@ public:
   void set_dir(Dir dr) { dir = dr; };
   void set_hunger(int h) { hunger = h; };
   void set_health(int h) { health = h; };
+  void set_state(State st) { state = st; };
 
   Point get_pos() { return pos; }
   int get_pos_x() { return pos.get_x(); };
   int get_pos_y() { return pos.get_y(); };
   Dir get_dir() { return dir; };
+  State get_state() { return state; };
 
 protected:
 

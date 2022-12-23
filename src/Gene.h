@@ -9,6 +9,11 @@ public:
   Gene();
   ~Gene();
 
+  State get_state() { return state; };
+  Env get_env() { return env; };
+  Action get_action() { return action; };
+  State get_next_state() { return next_state; };
+
 protected:
 
 private:

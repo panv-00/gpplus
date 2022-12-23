@@ -10,11 +10,13 @@ public:
   Chromo();
   ~Chromo();
 
+  Gene get_gene(int index) { return genes[index]; };
+
 protected:
 
 private:
   size_t count;
-  Gene Genes[GENES_COUNT];
+  Gene genes[GENES_COUNT];
 
 };
 
