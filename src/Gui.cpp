@@ -133,6 +133,7 @@ void Gui::render_game()
 
 int Gui::Run()
 {
+  srand(time(0));
   game->init_game();
 
   SDL_SetRenderDrawColor(renderer, HEX_COLOR(BACKGROUND_COLOR));

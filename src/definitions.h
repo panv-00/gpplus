@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define BACKGROUND_COLOR 0x2a3d45ff
 #define GRID_COLOR       0x7a6c5dff
