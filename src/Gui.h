@@ -13,8 +13,8 @@ public:
   Gui();
   ~Gui();
 
-  int Run();
   void redraw();
+  int Run();
 
 protected:
 
@@ -22,12 +22,10 @@ private:
   Game *game;
 
   int scc(int code);
-
-  void sdl_set_color_hex(Uint32 hex);
   void render_grid();
   void render_agent(Agent agent);
   void render_game();
-
+  
   float agents_dir[4][6] =  
   {
     // DIR_RT

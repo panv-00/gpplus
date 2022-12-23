@@ -12,8 +12,8 @@ public:
   void set_x(int x) { this->x = x; };
   void set_y(int y) { this->y = y; };
 
-  int get_x() { return x; };
-  int get_y() { return y; };
+  int get_x ()      { return x;    };
+  int get_y ()      { return y;    };
 
 protected:
 

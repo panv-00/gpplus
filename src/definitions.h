@@ -17,31 +17,36 @@
   ((hex) >>  8) & 0xff, \
   ((hex) >>  0) & 0xff
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH     800
+#define SCREEN_HEIGHT    800
 
-#define BOARD_WIDTH 20
-#define BOARD_HEIGHT 20
+#define BOARD_WIDTH      10
+#define BOARD_HEIGHT     10
 
-#define CELL_WIDTH ((float) SCREEN_WIDTH / BOARD_WIDTH)
-#define CELL_HEIGHT ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
+#define CELL_WIDTH       ((float) SCREEN_WIDTH  / BOARD_WIDTH )
+#define CELL_HEIGHT      ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
-#define AGENTS_COUNT 21
-#define AGENT_PADDING (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
+#define AGENTS_COUNT     5
+#define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 
-#define FOODS_COUNT 10
-#define FOOD_PADDING (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
+#define FOODS_COUNT      5
+#define FOOD_VALUE       10
+#define HUNGER_MAX       100
+#define HUNGER_STEP      5
+#define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
 
-#define WALLS_COUNT 21
-#define WALL_PADDING 0
+#define WALLS_COUNT      5
+#define WALL_PADDING     0
 
-#define GENES_COUNT 20
+#define GENES_COUNT      20
+
+#define ATTACK_DAMAGE    10
 
 typedef enum
 {
   DIR_RT = 0,
-  DIR_UP,
-  DIR_LT,
+  DIR_UP    ,
+  DIR_LT    ,
   DIR_DN
 
 } Dir;
@@ -51,9 +56,9 @@ typedef int State;
 typedef enum
 {
   ACTION_NOP = 0,
-  ACTION_STEP,
-  ACTION_EAT,
-  ACTION_ATTACK,
+  ACTION_STEP   ,
+  ACTION_EAT    ,
+  ACTION_ATTACK ,
   ACTION_TURN_LT,
   ACTION_TURN_RT
 
@@ -62,8 +67,8 @@ typedef enum
 typedef enum
 {
   ENV_NOTHING = 0,
-  ENV_AGENT,
-  ENV_FOOD,
+  ENV_AGENT      ,
+  ENV_FOOD       ,
   ENV_WALL
 
 } Env;
