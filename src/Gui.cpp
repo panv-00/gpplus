@@ -131,16 +131,21 @@ void Gui::render_game()
   }
 }
 
-int Gui::Run()
+void Gui::redraw()
 {
-  srand(time(0));
-  game->init_game();
-
   SDL_SetRenderDrawColor(renderer, HEX_COLOR(BACKGROUND_COLOR));
   scc(SDL_RenderClear(renderer));
   render_grid();
   render_game();
   SDL_RenderPresent(renderer);
+}
+
+int Gui::Run()
+{
+  srand(time(0));
+  game->init_game();
+
+  redraw();
 
   SDL_bool quit = SDL_FALSE;
   
@@ -159,8 +164,17 @@ int Gui::Run()
         case SDL_KEYDOWN:
           switch (event.key.keysym.sym)
           {
+            case SDLK_q:
+              quit = SDL_TRUE;
+              break;
+
             case SDLK_SPACE:
               game->step_game();
+              break;
+
+            case SDLK_r:
+              game->init_game();
+              redraw();
               break;
           }
           break;

@@ -14,6 +14,7 @@ public:
   ~Gui();
 
   int Run();
+  void redraw();
 
 protected:
 
