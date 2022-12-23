@@ -32,7 +32,7 @@
 #define FOOD_PADDING 20.0f
 
 #define WALLS_COUNT 21
-#define WALL_PADDING 8.0f
+#define WALL_PADDING 5.0f
 
 typedef enum
 {
