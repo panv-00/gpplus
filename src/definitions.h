@@ -28,19 +28,19 @@
 
 #define AGENTS_COUNT     5
 #define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
+#define ATTACK_DAMAGE    10
 
 #define FOODS_COUNT      5
+#define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
 #define FOOD_VALUE       10
 #define HUNGER_MAX       100
 #define HUNGER_STEP      5
-#define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
 
 #define WALLS_COUNT      5
 #define WALL_PADDING     0
 
 #define GENES_COUNT      20
 
-#define ATTACK_DAMAGE    10
 
 typedef enum
 {
@@ -60,7 +60,8 @@ typedef enum
   ACTION_EAT    ,
   ACTION_ATTACK ,
   ACTION_TURN_LT,
-  ACTION_TURN_RT
+  ACTION_TURN_RT,
+  ACTION_COUNT
 
 } Action;
 
@@ -69,7 +70,8 @@ typedef enum
   ENV_NOTHING = 0,
   ENV_AGENT      ,
   ENV_FOOD       ,
-  ENV_WALL
+  ENV_WALL       ,
+  ENV_COUNT
 
 } Env;
 

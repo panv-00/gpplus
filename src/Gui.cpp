@@ -142,7 +142,6 @@ void Gui::redraw()
 
 int Gui::Run()
 {
-  srand(time(0));
   game->init_game();
 
   redraw();
@@ -170,6 +169,7 @@ int Gui::Run()
 
             case SDLK_SPACE:
               game->step_game();
+              redraw();
               break;
 
             case SDLK_r:

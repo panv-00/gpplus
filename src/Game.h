@@ -26,8 +26,8 @@ public:
   void step_game();
 
   Agent get_agent(int i) { return agents[i]; };
-  Wall get_wall  (int i) { return walls[i];  };
-  Food get_food  (int i) { return foods[i];  };
+  Wall get_wall  (int i) { return walls [i]; };
+  Food get_food  (int i) { return foods [i]; };
 
 protected:
 
@@ -40,9 +40,6 @@ private:
   Chromo chromos[AGENTS_COUNT];
   Food foods[FOODS_COUNT];
   Wall walls[WALLS_COUNT];
-  size_t agents_count = 0;
-  size_t foods_count  = 0;
-  size_t walls_count  = 0;
 };
 
 #endif
