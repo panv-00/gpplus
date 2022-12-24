@@ -5,7 +5,17 @@ Gui::Gui()
   game = new Game();
 
   scc(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS));
-  scc(SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer));
+  scc
+  (
+    SDL_CreateWindowAndRenderer
+    (
+      SCREEN_WIDTH,
+      SCREEN_HEIGHT,
+      0,
+      &window,
+      &renderer
+    )
+  );
 }
 
 Gui::~Gui()
