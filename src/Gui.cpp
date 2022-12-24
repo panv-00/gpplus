@@ -150,12 +150,18 @@ void Gui::redraw()
   SDL_RenderPresent(renderer);
 }
 
-void Gui::print_chromos()
+void Gui::print_agent_at(int x, int y)
 {
-  for (size_t i = 0; i < AGENTS_COUNT; i++)
+  int pos_x = (int) floorf(x / CELL_WIDTH );
+  int pos_y = (int) floorf(y / CELL_HEIGHT);
+
+  int index = game->agent_at(pos_x, pos_y);
+  
+  if (index >= 0)
   {
-    printf("\n\nAgent # %3ld:\n", i);
-    game->get_chromo(i)->print();
+    printf("\n\nAgent # %3d:\n", index);
+    game->get_agent(index)->print();
+    game->get_chromo(index)->print();
   }
 }
 
@@ -164,7 +170,6 @@ int Gui::run()
   game->init_game();
 
   redraw();
-  print_chromos();
   SDL_bool quit = SDL_FALSE;
   
   while (!quit)
@@ -194,9 +199,12 @@ int Gui::run()
             case SDLK_r:
               game->init_game();
               redraw();
-              print_chromos();
               break;
           }
+          break;
+
+        case SDL_MOUSEBUTTONDOWN:
+          print_agent_at(event.button.x, event.button.y);
           break;
       }
     }

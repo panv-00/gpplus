@@ -29,6 +29,8 @@ public:
   int   get_health() { return health;      };
   State get_state () { return state;       };
 
+  void print();
+
 protected:
 
 private:

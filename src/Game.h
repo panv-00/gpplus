@@ -17,11 +17,12 @@ public:
 
   Point  get_free_location();
   void   init_game();
+  int    agent_at(int pos_x, int pos_y);
   Point  *point_infront_of_agent(Agent *agent);
   Env    env_infront_of_agent(size_t agent_index);
-  size_t food_infront_of_agent(size_t agent_index);
-  size_t agent_infront_of_agent(size_t agent_index);
-  size_t wall_infront_of_agent(size_t agent_index);
+  int    food_infront_of_agent(size_t agent_index);
+  int    agent_infront_of_agent(size_t agent_index);
+  int    wall_infront_of_agent(size_t agent_index);
   void   execute_action(size_t agent_index, Action action);
   void   step_game();
 

@@ -14,7 +14,7 @@ public:
   ~Gui();
 
   void redraw();
-  void print_chromos();
+  void print_agent_at(int x, int y);
   int  run();
 
 protected:

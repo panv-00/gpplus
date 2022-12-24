@@ -115,6 +115,20 @@ void Game::init_game()
 
 }
 
+int Game::agent_at(int pos_x, int pos_y)
+{
+  for (size_t i = 0; i < AGENTS_COUNT; i++)
+  {
+    if (agents[i].get_pos_x() == pos_x
+        && agents[i].get_pos_y() == pos_y)
+    {
+      return i;
+    }
+  }
+  
+  return -1;
+}
+
 Point *Game::point_infront_of_agent(Agent *agent)
 {
   Point d = points_dir[agent->get_dir()];
@@ -126,7 +140,7 @@ Point *Game::point_infront_of_agent(Agent *agent)
   return result;
 }
 
-size_t Game::food_infront_of_agent(size_t agent_index)
+int Game::food_infront_of_agent(size_t agent_index)
 {
   Point *infront = point_infront_of_agent(&agents[agent_index]);
 
@@ -140,7 +154,7 @@ size_t Game::food_infront_of_agent(size_t agent_index)
   return -1;
 }
 
-size_t Game::agent_infront_of_agent(size_t agent_index)
+int Game::agent_infront_of_agent(size_t agent_index)
 {
   Point *infront = point_infront_of_agent(&agents[agent_index]);
   
@@ -155,7 +169,7 @@ size_t Game::agent_infront_of_agent(size_t agent_index)
   return -1;
 }
 
-size_t Game::wall_infront_of_agent(size_t agent_index)
+int Game::wall_infront_of_agent(size_t agent_index)
 {
   Point *infront = point_infront_of_agent(&agents[agent_index]);
 
@@ -204,8 +218,8 @@ void Game::execute_action(size_t agent_index, Action action)
 
     case ACTION_EAT:
     {
-      size_t food_index = food_infront_of_agent(agent_index);
-      if (food_index > 0)
+      int food_index = food_infront_of_agent(agent_index);
+      if (food_index >= 0)
       {
         int old_hunger = agents[agent_index].get_hunger();
 
@@ -217,9 +231,9 @@ void Game::execute_action(size_t agent_index, Action action)
 
     case ACTION_ATTACK:
     {
-      size_t other_agent_index = agent_infront_of_agent(agent_index);
+      int other_agent_index = agent_infront_of_agent(agent_index);
 
-      if (other_agent_index > 0)
+      if (other_agent_index >= 0)
       {
         int old_health = agents[other_agent_index].get_health();
 
