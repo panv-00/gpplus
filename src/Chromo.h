@@ -7,19 +7,21 @@
 class Chromo
 {
 public:
-  Chromo();
+   Chromo();
   ~Chromo();
 
-  size_t get_count(         ) { return count;        };
-  Gene get_gene   (int index) { return genes[index]; };
+  size_t get_count(         ) { return count;         };
+  Gene   *get_gene(int index) { return &genes[index]; };
 
-  void set_count(size_t count) { this->count = count; };
+  void   set_count(size_t count) { this->count = count; };
+
+  void   print();
 
 protected:
 
 private:
   size_t count;
-  Gene genes[GENES_COUNT];
+  Gene   genes[GENES_COUNT];
 
 };
 

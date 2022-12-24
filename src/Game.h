@@ -12,22 +12,23 @@
 class Game
 {
 public:
-  Game();
+   Game();
   ~Game();
 
-  Point get_free_location();
-  void init_game();
-  Point point_infront_of_agent(Agent *agent);
-  Env env_of_agent(size_t agent_index);
+  Point  get_free_location();
+  void   init_game();
+  Point  *point_infront_of_agent(Agent *agent);
+  Env    env_of_agent(size_t agent_index);
   size_t food_infront_of_agent(size_t agent_index);
   size_t agent_infront_of_agent(size_t agent_index);
   size_t wall_infront_of_agent(size_t agent_index);
-  void execute_action(size_t agent_index, Action action);
-  void step_game();
+  void   execute_action(size_t agent_index, Action action);
+  void   step_game();
 
-  Agent get_agent(int i) { return agents[i]; };
-  Wall get_wall  (int i) { return walls [i]; };
-  Food get_food  (int i) { return foods [i]; };
+  Agent  *get_agent (int i) { return &agents [i]; };
+  Chromo *get_chromo(int i) { return &chromos[i]; };
+  Food   *get_food  (int i) { return &foods  [i]; };
+  Wall   *get_wall  (int i) { return &walls  [i]; };
 
 protected:
 
@@ -35,11 +36,11 @@ private:
   int random_int_range(int low, int high) { return rand() % (high - low) + low; };
   int mod_int         (int a  , int b   ) { return (a % b + b) % b;             };
 
-  Point points_dir[4];
-  Agent agents[AGENTS_COUNT];
+  Point  points_dir[4];
+  Agent  agents[AGENTS_COUNT];
   Chromo chromos[AGENTS_COUNT];
-  Food foods[FOODS_COUNT];
-  Wall walls[WALLS_COUNT];
+  Food   foods[FOODS_COUNT];
+  Wall   walls[WALLS_COUNT];
 };
 
 #endif

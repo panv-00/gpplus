@@ -10,21 +10,21 @@
 class Gui
 {
 public:
-  Gui();
+   Gui();
   ~Gui();
 
   void redraw();
-  int Run();
+  int  Run();
 
 protected:
 
 private:
-  Game *game;
+  Game  *game;
 
-  int scc(int code);
-  void render_grid();
-  void render_agent(Agent agent);
-  void render_game();
+  int   scc(int code);
+  void  render_grid();
+  void  render_agent(Agent *agent);
+  void  render_game();
   
   float agents_dir[4][6] =  
   {
@@ -41,7 +41,7 @@ private:
     {0.0, 0.0, 1.0, 0.0, 0.5, 1.0}
   };
 
-  SDL_Window *window = NULL;
+  SDL_Window   *window   = NULL;
   SDL_Renderer *renderer = NULL;
 };
 

@@ -87,9 +87,9 @@ void Game::init_game()
     // Init Genes
     for (size_t j = 0; j < GENES_COUNT; j++)
     {
-      chromos[i].get_gene(j).set_state((State) random_int_range(0, GENES_COUNT));
-      chromos[i].get_gene(j).set_env((Env) random_int_range(0, ENV_COUNT));
-      chromos[i].get_gene(j).set_action((Action) random_int_range(0, ACTION_COUNT));
+      chromos[i].get_gene(j)->set_state((State) random_int_range(0, GENES_COUNT));
+      chromos[i].get_gene(j)->set_env((Env) random_int_range(0, ENV_COUNT));
+      chromos[i].get_gene(j)->set_action((Action) random_int_range(0, ACTION_COUNT));
     }
   }
 
@@ -111,26 +111,26 @@ void Game::init_game()
 
 }
 
-Point Game::point_infront_of_agent(Agent *agent)
+Point *Game::point_infront_of_agent(Agent *agent)
 {
   Point d = points_dir[agent->get_dir()];
-  Point result = agent->get_pos();
+  Point *result = agent->get_pos();
 
-  result.set_x(mod_int(result.get_x() + d.get_x(), BOARD_WIDTH));
-  result.set_y(mod_int(result.get_y() + d.get_y(), BOARD_HEIGHT));
+  result->set_x(mod_int(result->get_x() + d.get_x(), BOARD_WIDTH));
+  result->set_y(mod_int(result->get_y() + d.get_y(), BOARD_HEIGHT));
 
   return result;
 }
 
 size_t Game::food_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point *infront = point_infront_of_agent(&agents[agent_index]);
 
   for (size_t i = 0; i < FOODS_COUNT; i++)
   {
     if (!foods[i].get_eaten()
-        && infront.get_x() == foods[i].get_pos_x()
-        && infront.get_y() == foods[i].get_pos_y()) { return i; }
+        && infront->get_x() == foods[i].get_pos_x()
+        && infront->get_y() == foods[i].get_pos_y()) { return i; }
   }
 
   return -1;
@@ -138,14 +138,14 @@ size_t Game::food_infront_of_agent(size_t agent_index)
 
 size_t Game::agent_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point *infront = point_infront_of_agent(&agents[agent_index]);
   
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
     if (i != agent_index
         && agents[i].get_health() > 0
-        && infront.get_x() == agents[i].get_pos_x()
-        && infront.get_y() == agents[i].get_pos_y()) { return i; }
+        && infront->get_x() == agents[i].get_pos_x()
+        && infront->get_y() == agents[i].get_pos_y()) { return i; }
   }
 
   return -1;
@@ -153,12 +153,12 @@ size_t Game::agent_infront_of_agent(size_t agent_index)
 
 size_t Game::wall_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point *infront = point_infront_of_agent(&agents[agent_index]);
 
   for (size_t i = 0; i < WALLS_COUNT; i++)
   {
-    if (infront.get_x() == walls[i].get_pos_x()
-        && infront.get_y() == walls[i].get_pos_y()) { return i; }
+    if (infront->get_x() == walls[i].get_pos_x()
+        && infront->get_y() == walls[i].get_pos_y()) { return i; }
   }
 
   return -1;
@@ -236,11 +236,11 @@ void Game::step_game()
   {
     for (size_t j = 0; j < GENES_COUNT; j++)
     {
-      if (chromos[i].get_gene(j).get_state() == agents[i].get_state()
-          && chromos[i].get_gene(j).get_env() == env_of_agent(i))        
+      if (chromos[i].get_gene(j)->get_state() == agents[i].get_state()
+          && chromos[i].get_gene(j)->get_env() == env_of_agent(i))        
       {
-        execute_action(i, chromos[i].get_gene(j).get_action());
-        agents[i].set_state(chromos[i].get_gene(j).get_next_state());
+        execute_action(i, chromos[i].get_gene(j)->get_action());
+        agents[i].set_state(chromos[i].get_gene(j)->get_next_state());
       }
     }
   }

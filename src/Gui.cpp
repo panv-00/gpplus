@@ -63,34 +63,34 @@ void Gui::render_grid()
   }
 }
 
-void Gui::render_agent(Agent agent)
+void Gui::render_agent(Agent *agent)
 {
-  float x1 = agents_dir[agent.get_dir()][0] *
+  float x1 = agents_dir[agent->get_dir()][0] *
     (CELL_WIDTH - AGENT_PADDING * 2) +
-    agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+    agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
   
-  float y1 = agents_dir[agent.get_dir()][1] *
+  float y1 = agents_dir[agent->get_dir()][1] *
     (CELL_HEIGHT - AGENT_PADDING * 2) +
-    agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+    agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
   
-  float x2 = agents_dir[agent.get_dir()][2] *
+  float x2 = agents_dir[agent->get_dir()][2] *
     (CELL_WIDTH - AGENT_PADDING * 2) +
-    agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+    agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
   
-  float y2 = agents_dir[agent.get_dir()][3] *
+  float y2 = agents_dir[agent->get_dir()][3] *
     (CELL_HEIGHT - AGENT_PADDING * 2) +
-    agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+    agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
   
-  float x3 = agents_dir[agent.get_dir()][4] *
+  float x3 = agents_dir[agent->get_dir()][4] *
     (CELL_WIDTH - AGENT_PADDING * 2) +
-    agent.get_pos_x() * CELL_WIDTH + AGENT_PADDING;
+    agent->get_pos_x() * CELL_WIDTH + AGENT_PADDING;
   
-  float y3 = agents_dir[agent.get_dir()][5] *
+  float y3 = agents_dir[agent->get_dir()][5] *
     (CELL_HEIGHT - AGENT_PADDING * 2) +
-    agent.get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
+    agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
 
   filledTrigonColor(renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
-  aatrigonColor(renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
+  aatrigonColor    (renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
 
 }
 
@@ -108,8 +108,8 @@ void Gui::render_game()
     filledCircleRGBA
     (
       renderer,
-      (int) floorf(game->get_food(i).get_pos_x() * CELL_WIDTH + CELL_WIDTH * 0.5f),
-      (int) floorf(game->get_food(i).get_pos_y() * CELL_HEIGHT + CELL_HEIGHT * 0.5f),
+      (int) floorf(game->get_food(i)->get_pos_x() * CELL_WIDTH + CELL_WIDTH * 0.5f),
+      (int) floorf(game->get_food(i)->get_pos_y() * CELL_HEIGHT + CELL_HEIGHT * 0.5f),
       (int) floorf(fminf(CELL_WIDTH, CELL_HEIGHT) * 0.5f - FOOD_PADDING),
       HEX_COLOR(FOOD_COLOR)
     );
@@ -120,14 +120,14 @@ void Gui::render_game()
   {
     SDL_Rect rect =
     {
-      (int) floorf(game->get_wall(i).get_pos_x() * CELL_WIDTH + WALL_PADDING),
-      (int) floorf(game->get_wall(i).get_pos_y() * CELL_HEIGHT + WALL_PADDING),
+      (int) floorf(game->get_wall(i)->get_pos_x() * CELL_WIDTH + WALL_PADDING),
+      (int) floorf(game->get_wall(i)->get_pos_y() * CELL_HEIGHT + WALL_PADDING),
       (int) floorf(CELL_WIDTH - WALL_PADDING * 2),
       (int) floorf(CELL_HEIGHT - WALL_PADDING * 2)
     };
     
     SDL_SetRenderDrawColor(renderer, HEX_COLOR(WALL_COLOR));
-    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderFillRect    (renderer, &rect);
   }
 }
 
@@ -145,6 +145,10 @@ int Gui::Run()
   game->init_game();
 
   redraw();
+//  game->get_chromo(0)->print();
+//  game->get_chromo(1)->print();
+//  game->get_chromo(2)->print();
+//  game->get_chromo(3)->print();
 
   SDL_bool quit = SDL_FALSE;
   
