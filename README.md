@@ -10,11 +10,11 @@ Based on the work written by [tsoding], using C++ instead of C.
 
 Dependencies: [SDL2], [SDL2_gfx]
 
-''' console
+```console
 $ make
 $ ./gpplus
 
-'''
+```
 
 ## Shortcuts
 
