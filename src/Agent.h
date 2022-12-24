@@ -16,7 +16,10 @@ public:
   void set_pos_y (int   pos_y ) { this->pos.set_y(pos_y);                };
   void set_dir   (Dir   dir   ) { this->dir = dir;                       };
   void set_hunger(int   hunger) { this->hunger = (hunger > HUNGER_MAX ?
-                                                  HUNGER_MAX : hunger);  };
+                                                  HUNGER_MAX          :
+                                                  (hunger < 0         ?
+                                                   0                  :
+                                                   hunger));             };
   void set_health(int   health) { this->health = (health > 0          ?
                                                   health     : 0     );  };
   void set_state (State state ) { this->state = state;                   };
