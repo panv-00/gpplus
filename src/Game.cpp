@@ -87,9 +87,10 @@ void Game::init_game()
     // Init Genes
     for (size_t j = 0; j < GENES_COUNT; j++)
     {
-      chromos[i].get_gene(j)->set_state((State) random_int_range(0, GENES_COUNT));
+      chromos[i].get_gene(j)->set_state((State) random_int_range(0, STATES_COUNT));
       chromos[i].get_gene(j)->set_env((Env) random_int_range(0, ENV_COUNT));
       chromos[i].get_gene(j)->set_action((Action) random_int_range(0, ACTION_COUNT));
+      chromos[i].get_gene(j)->set_next_state((State) random_int_range(0, STATES_COUNT));
     }
   }
 

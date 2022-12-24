@@ -14,10 +14,10 @@ public:
   Action get_action    () { return action;     };
   State  get_next_state() { return next_state; };
 
-  void set_state      (State state     ) { this->state      = state;      };
-  void set_env        (Env env         ) { this->env        = env;        };
-  void set_action     (Action action   ) { this->action     = action;     };
-  void set_next_action(State next_state) { this->next_state = next_state; };
+  void set_state     (State state     ) { this->state      = state;      };
+  void set_env       (Env env         ) { this->env        = env;        };
+  void set_action    (Action action   ) { this->action     = action;     };
+  void set_next_state(State next_state) { this->next_state = next_state; };
 
 protected:
 

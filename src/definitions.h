@@ -20,13 +20,13 @@
 #define SCREEN_WIDTH     800
 #define SCREEN_HEIGHT    800
 
-#define BOARD_WIDTH      10
-#define BOARD_HEIGHT     10
+#define BOARD_WIDTH      8
+#define BOARD_HEIGHT     8
 
 #define CELL_WIDTH       ((float) SCREEN_WIDTH  / BOARD_WIDTH )
 #define CELL_HEIGHT      ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
-#define AGENTS_COUNT     5
+#define AGENTS_COUNT     3
 #define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 #define ATTACK_DAMAGE    10
 
@@ -40,6 +40,7 @@
 #define WALL_PADDING     0
 
 #define GENES_COUNT      20
+#define STATES_COUNT     4
 
 
 typedef enum
@@ -50,6 +51,8 @@ typedef enum
   DIR_DN
 
 } Dir;
+
+const char *dir_to_cstr(Dir dir);
 
 typedef int State;
 
@@ -65,6 +68,8 @@ typedef enum
 
 } Action;
 
+const char *action_to_cstr(Action action);
+
 typedef enum
 {
   ENV_NOTHING = 0,
@@ -75,5 +80,6 @@ typedef enum
 
 } Env;
 
+const char *env_to_cstr(Env env);
 
 #endif

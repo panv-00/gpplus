@@ -5,6 +5,7 @@ LIBS=`pkg-config --libs $(PKGS)` -lm
 VPATH=../src
 
 OBJECTS= \
+	definitions.o \
 	Gui.o \
 	Gene.o \
 	Chromo.o \
@@ -15,7 +16,6 @@ OBJECTS= \
 	Wall.o \
 
 DEPLIST= \
-	definitions.h
 
 default: $(OBJECTS)
 	$(CPP) -o ../gpplus ../src/gpplus.cpp \
