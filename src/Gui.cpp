@@ -106,33 +106,49 @@ void Gui::render_agent(Agent *agent)
 
 void Gui::render_game()
 {
+  Agent *agent;
+  Food  *food;
+  Wall  *wall;
+
   // Render Agents
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
-    render_agent(game->get_agent(i));
+    agent = game->get_agent(i);
+
+    if (agent->get_health() > 0)
+    {
+      render_agent(agent);
+    }
   }
 
   // Render Foods
   for (size_t i = 0; i < FOODS_COUNT; i++)
   {
-    filledCircleRGBA
-    (
-      renderer,
-      (int) floorf(game->get_food(i)->get_pos_x() * CELL_WIDTH + CELL_WIDTH * 0.5f),
-      (int) floorf(game->get_food(i)->get_pos_y() * CELL_HEIGHT + CELL_HEIGHT * 0.5f),
-      (int) floorf(fminf(CELL_WIDTH, CELL_HEIGHT) * 0.5f - FOOD_PADDING),
-      HEX_COLOR(FOOD_COLOR)
-    );
+    food = game->get_food(i);
+
+    if (!food->get_eaten())
+    {
+      filledCircleRGBA
+      (
+        renderer,
+        (int) floorf(food->get_pos_x() * CELL_WIDTH  + CELL_WIDTH  * 0.5f),
+        (int) floorf(food->get_pos_y() * CELL_HEIGHT + CELL_HEIGHT * 0.5f),
+        (int) floorf(fminf(CELL_WIDTH, CELL_HEIGHT) * 0.5f - FOOD_PADDING),
+        HEX_COLOR(FOOD_COLOR)
+      );
+    }
   }
 
   // Render Walls
   for (size_t i = 0; i < WALLS_COUNT; i++)
   {
+    wall = game->get_wall(i);
+
     SDL_Rect rect =
     {
-      (int) floorf(game->get_wall(i)->get_pos_x() * CELL_WIDTH + WALL_PADDING),
-      (int) floorf(game->get_wall(i)->get_pos_y() * CELL_HEIGHT + WALL_PADDING),
-      (int) floorf(CELL_WIDTH - WALL_PADDING * 2),
+      (int) floorf(wall->get_pos_x() * CELL_WIDTH  + WALL_PADDING),
+      (int) floorf(wall->get_pos_y() * CELL_HEIGHT + WALL_PADDING),
+      (int) floorf(CELL_WIDTH  - WALL_PADDING * 2),
       (int) floorf(CELL_HEIGHT - WALL_PADDING * 2)
     };
     

@@ -265,31 +265,29 @@ void Game::execute_action(size_t agent_index, Action action)
 
 void Game::step_game()
 {
-  // Interprete genes
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
-    for (size_t j = 0; j < GENES_COUNT; j++)
+    if (agents[i].get_health() > 0)
     {
-      if (chromos[i].get_gene(j)->get_state() == agents[i].get_state()
-          && chromos[i].get_gene(j)->get_env() == env_infront_of_agent(i))        
+
+      // Interprete genes
+      for (size_t j = 0; j < GENES_COUNT; j++)
       {
-        execute_action(i, chromos[i].get_gene(j)->get_action());
-        agents[i].set_state(chromos[i].get_gene(j)->get_next_state());
+        if (chromos[i].get_gene(j)->get_state() == agents[i].get_state()
+            && chromos[i].get_gene(j)->get_env() == env_infront_of_agent(i))
+        {
+          execute_action(i, chromos[i].get_gene(j)->get_action());
+          agents[i].set_state(chromos[i].get_gene(j)->get_next_state());
+        }
+      }
+
+      // Handle Hunger
+      agents[i].set_hunger(agents[i].get_hunger() - HUNGER_STEP);
+
+      if (agents[i].get_hunger() <= 0)
+      {
+        agents[i].set_health(0);
       }
     }
   }
-  // Handle Hunger
-  for (size_t i = 0; i < AGENTS_COUNT; i++)
-  {
-    agents[i].set_hunger(agents[i].get_hunger() - HUNGER_STEP);
-  }
-  
-  for (size_t i = 0; i < AGENTS_COUNT; i++)
-  {
-    if (agents[i].get_health() == 0)
-    {
-      // TODO
-    }
-  }
-  // remove_dead_agents();
 }
