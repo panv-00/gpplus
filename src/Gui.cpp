@@ -159,7 +159,7 @@ void Gui::print_chromos()
   }
 }
 
-int Gui::Run()
+int Gui::run()
 {
   game->init_game();
 

@@ -26,7 +26,7 @@
 #define CELL_WIDTH       ((float) SCREEN_WIDTH  / BOARD_WIDTH )
 #define CELL_HEIGHT      ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
-#define AGENTS_COUNT     3
+#define AGENTS_COUNT     2
 #define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 #define ATTACK_DAMAGE    10
 
@@ -48,7 +48,8 @@ typedef enum
   DIR_RT = 0,
   DIR_UP    ,
   DIR_LT    ,
-  DIR_DN
+  DIR_DN    ,
+  DIR_COUNT
 
 } Dir;
 

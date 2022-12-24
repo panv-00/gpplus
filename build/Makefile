@@ -16,6 +16,7 @@ OBJECTS= \
 	Wall.o \
 
 DEPLIST= \
+	definitions.h
 
 default: $(OBJECTS)
 	$(CPP) -o ../gpplus ../src/gpplus.cpp \

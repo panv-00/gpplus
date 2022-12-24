@@ -18,7 +18,7 @@ public:
   Point  get_free_location();
   void   init_game();
   Point  *point_infront_of_agent(Agent *agent);
-  Env    env_of_agent(size_t agent_index);
+  Env    env_infront_of_agent(size_t agent_index);
   size_t food_infront_of_agent(size_t agent_index);
   size_t agent_infront_of_agent(size_t agent_index);
   size_t wall_infront_of_agent(size_t agent_index);
@@ -36,7 +36,7 @@ private:
   int random_int_range(int low, int high) { return rand() % (high - low) + low; };
   int mod_int         (int a  , int b   ) { return (a % b + b) % b;             };
 
-  Point  points_dir[4];
+  Point  points_dir[DIR_COUNT];
   Agent  agents[AGENTS_COUNT];
   Chromo chromos[AGENTS_COUNT];
   Food   foods[FOODS_COUNT];

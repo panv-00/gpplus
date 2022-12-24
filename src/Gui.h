@@ -15,7 +15,7 @@ public:
 
   void redraw();
   void print_chromos();
-  int  Run();
+  int  run();
 
 protected:
 
@@ -27,7 +27,7 @@ private:
   void  render_agent(Agent *agent);
   void  render_game();
   
-  float agents_dir[4][6] =  
+  float agents_dir[DIR_COUNT][6] =  
   {
     // DIR_RT
     {0.0, 0.0, 1.0, 0.5, 0.0, 1.0},

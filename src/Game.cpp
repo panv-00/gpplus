@@ -6,13 +6,13 @@ Game::Game()
   points_dir[0].set_x( 1); points_dir[0].set_y( 0);
 
   // DIR_UP
-  points_dir[0].set_x( 0); points_dir[0].set_y(-1);
+  points_dir[1].set_x( 0); points_dir[0].set_y(-1);
   
   // DIR_LT
-  points_dir[0].set_x(-1); points_dir[0].set_y( 0);
+  points_dir[2].set_x(-1); points_dir[0].set_y( 0);
 
   // DIR_DN
-  points_dir[0].set_x( 0); points_dir[0].set_y( 1);
+  points_dir[3].set_x( 0); points_dir[0].set_y( 1);
 
 }
 
@@ -168,7 +168,7 @@ size_t Game::wall_infront_of_agent(size_t agent_index)
   return -1;
 }
 
-Env Game::env_of_agent(size_t agent_index)
+Env Game::env_infront_of_agent(size_t agent_index)
 {
   if (food_infront_of_agent(agent_index)  >= 0) { return ENV_FOOD;  }
   if (wall_infront_of_agent(agent_index)  >= 0) { return ENV_WALL;  }
@@ -186,7 +186,7 @@ void Game::execute_action(size_t agent_index, Action action)
 
     case ACTION_STEP:
     {
-      if (env_of_agent(agent_index) != ENV_WALL)
+      if (env_infront_of_agent(agent_index) != ENV_WALL)
       {
         Point d = points_dir[agents[agent_index].get_dir()];
         Point e;
@@ -257,7 +257,7 @@ void Game::step_game()
     for (size_t j = 0; j < GENES_COUNT; j++)
     {
       if (chromos[i].get_gene(j)->get_state() == agents[i].get_state()
-          && chromos[i].get_gene(j)->get_env() == env_of_agent(i))        
+          && chromos[i].get_gene(j)->get_env() == env_infront_of_agent(i))        
       {
         execute_action(i, chromos[i].get_gene(j)->get_action());
         agents[i].set_state(chromos[i].get_gene(j)->get_next_state());
