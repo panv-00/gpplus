@@ -148,7 +148,10 @@ void Gui::redraw()
   render_grid();
   render_game();
   SDL_RenderPresent(renderer);
+}
 
+void Gui::print_chromos()
+{
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
     printf("\n\nAgent # %3ld:\n", i);
@@ -161,6 +164,7 @@ int Gui::Run()
   game->init_game();
 
   redraw();
+  print_chromos();
   SDL_bool quit = SDL_FALSE;
   
   while (!quit)
@@ -190,6 +194,7 @@ int Gui::Run()
             case SDLK_r:
               game->init_game();
               redraw();
+              print_chromos();
               break;
           }
           break;

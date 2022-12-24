@@ -14,6 +14,7 @@ public:
   ~Gui();
 
   void redraw();
+  void print_chromos();
   int  Run();
 
 protected:
