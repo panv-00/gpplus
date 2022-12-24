@@ -99,9 +99,10 @@ void Gui::render_agent(Agent *agent)
     (CELL_HEIGHT - AGENT_PADDING * 2) +
     agent->get_pos_y() * CELL_HEIGHT + AGENT_PADDING;
 
-  filledTrigonColor(renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
-  aatrigonColor    (renderer, x1, y1, x2, y2, x3, y3, AGENT_COLOR);
+  Uint32 color = agent->get_health() > 0 ? AGENT_COLOR : AGENT_DEAD_COLOR;
 
+  filledTrigonRGBA(renderer, x1, y1, x2, y2, x3, y3, HEX_COLOR(color));
+  aatrigonRGBA    (renderer, x1, y1, x2, y2, x3, y3, HEX_COLOR(color));
 }
 
 void Gui::render_game()
@@ -114,11 +115,7 @@ void Gui::render_game()
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
     agent = game->get_agent(i);
-
-    if (agent->get_health() > 0)
-    {
-      render_agent(agent);
-    }
+    render_agent(agent);
   }
 
   // Render Foods

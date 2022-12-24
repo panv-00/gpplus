@@ -8,6 +8,7 @@
 #define BACKGROUND_COLOR 0x2a3d45ff
 #define GRID_COLOR       0x7a6c5dff
 #define AGENT_COLOR      0xda2c38ff
+#define AGENT_DEAD_COLOR 0x333333ff
 #define WALL_COLOR       0x7a6c5dff
 #define FOOD_COLOR       0x87c38fff
 
