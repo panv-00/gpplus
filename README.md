@@ -24,6 +24,10 @@ $ ./gpplus
 | <kbd>SPACE</kbd> | Step the state of the game.     |
 
 
+## Mouse
+
+- Clicking on Agents (red triangles) dumps their info to stdout.
+
 
 [tsoding]: https://github.com/tsoding/gp
 [SDL2]: https://libsdl.org
