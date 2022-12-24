@@ -26,3 +26,5 @@ $ ./gpplus
 
 
 [tsoding]: https://github.com/tsoding/gp
+[SDL2]: https://libsdl.org
+[SDL2_gfx]: https://github.com/ferzkopp/SDL2_gfx
