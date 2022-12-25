@@ -17,14 +17,14 @@ Point Game::get_free_location()
 
   while (!available)
   {
-    x = random_int_range(0, BOARD_WIDTH);
+    x = random_int_range(0, BOARD_WIDTH );
     y = random_int_range(0, BOARD_HEIGHT);
     available = true;
 
     // Loop through Agents, Foods, and walls
     for (size_t i = 0; i < AGENTS_COUNT; i++)
     {
-      if (agents[i].get_pos_x() == x && agents[i].get_pos_y() == y)
+      if (agents[i].get_pos()->is_equal(Point(x, y)))
       {
         available = false;
         break;
@@ -33,7 +33,7 @@ Point Game::get_free_location()
 
     for (size_t i = 0; i < FOODS_COUNT; i++)
     {
-      if (foods[i].get_pos_x() == x && foods[i].get_pos_y() == y)
+      if (foods[i].get_pos()->is_equal(Point(x, y)))
       {
         available = false;
         break;
@@ -42,7 +42,7 @@ Point Game::get_free_location()
 
     for (size_t i = 0; i < WALLS_COUNT; i++)
     {
-      if (walls[i].get_pos_x() == x && walls[i].get_pos_y() == y)
+      if (walls[i].get_pos()->is_equal(Point(x, y)))
       {
         available = false;
         break;
@@ -63,12 +63,12 @@ void Game::init_game()
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
     agents[i].set_pos(get_free_location());
-    agents[i].set_dir((Dir) random_int_range(0, 4));
+    agents[i].set_dir((Dir) random_int_range(0, DIR_COUNT));
     agents[i].set_hunger(100);
     agents[i].set_health(100);
     agents[i].set_lifetime(0);
    
-    // Init Genes
+    // Init Genes for each Agent
     for (size_t j = 0; j < GENES_COUNT; j++)
     {
       gene = chromos[i].get_gene(j);
@@ -91,15 +91,13 @@ void Game::init_game()
   {
     walls[i].set_pos(get_free_location());
   }
-
 }
 
-int Game::agent_at(int pos_x, int pos_y)
+int Game::agent_at(int x, int y)
 {
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
-    if (agents[i].get_pos_x() == pos_x
-        && agents[i].get_pos_y() == pos_y)
+    if (agents[i].get_pos()->is_equal(Point(x, y)))
     {
       return i;
     }
@@ -108,10 +106,11 @@ int Game::agent_at(int pos_x, int pos_y)
   return -1;
 }
 
-Point Game::point_infront_of_agent(Agent *agent)
+Point Game::point_infront_of_agent(size_t agent_index)
 {
-  Point d = points_dir[agent->get_dir()];
-  Point result(agent->get_pos()->get_x(), agent->get_pos()->get_y());
+  Agent agent = agents[agent_index];
+  Point d = points_dir[agent.get_dir()];
+  Point result = *agent.get_pos();
 
   result.set_x(mod_int(result.get_x() + d.get_x(), BOARD_WIDTH));
   result.set_y(mod_int(result.get_y() + d.get_y(), BOARD_HEIGHT));
@@ -121,13 +120,14 @@ Point Game::point_infront_of_agent(Agent *agent)
 
 int Game::food_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point infront = point_infront_of_agent(agent_index);
 
   for (size_t i = 0; i < FOODS_COUNT; i++)
   {
-    if (!foods[i].get_eaten()
-        && infront.get_x() == foods[i].get_pos_x()
-        && infront.get_y() == foods[i].get_pos_y()) { return i; }
+    if (!foods[i].get_eaten() && infront.is_equal(*foods[i].get_pos()))
+    {
+      return i;
+    }
   }
 
   return -1;
@@ -135,14 +135,15 @@ int Game::food_infront_of_agent(size_t agent_index)
 
 int Game::agent_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point infront = point_infront_of_agent(agent_index);
   
   for (size_t i = 0; i < AGENTS_COUNT; i++)
   {
-    if (i != agent_index
-        && agents[i].get_health() > 0
-        && infront.get_x() == agents[i].get_pos_x()
-        && infront.get_y() == agents[i].get_pos_y()) { return i; }
+    if (i != agent_index && agents[i].get_health() > 0
+        && infront.is_equal(*agents[i].get_pos()))
+    {
+      return i;
+    }
   }
 
   return -1;
@@ -150,12 +151,14 @@ int Game::agent_infront_of_agent(size_t agent_index)
 
 int Game::wall_infront_of_agent(size_t agent_index)
 {
-  Point infront = point_infront_of_agent(&agents[agent_index]);
+  Point infront = point_infront_of_agent(agent_index);
 
   for (size_t i = 0; i < WALLS_COUNT; i++)
   {
-    if (infront.get_x() == walls[i].get_pos_x()
-        && infront.get_y() == walls[i].get_pos_y()) { return i; }
+    if (infront.is_equal(*walls[i].get_pos()))
+    {
+      return i;
+    }
   }
 
   return -1;
@@ -179,7 +182,7 @@ void Game::execute_action(size_t agent_index, Action action)
 
     case ACTION_STEP:
     {
-      if (env_infront_of_agent(agent_index) != ENV_WALL)
+      if (env_infront_of_agent(agent_index) == ENV_NOTHING)
       {
         Point d = points_dir[agents[agent_index].get_dir()];
         Point e(0, 0);
@@ -198,10 +201,12 @@ void Game::execute_action(size_t agent_index, Action action)
     case ACTION_EAT:
     {
       int food_index = food_infront_of_agent(agent_index);
+      
       if (food_index >= 0)
       {
         int old_hunger = agents[agent_index].get_hunger();
-
+        
+        agents[agent_index].set_pos(*foods[food_index].get_pos());
         foods[food_index].set_eaten(true);
         agents[agent_index].set_hunger(old_hunger + FOOD_VALUE);
       }
@@ -223,17 +228,17 @@ void Game::execute_action(size_t agent_index, Action action)
 
     case ACTION_TURN_LT:
     {
-      Dir new_direction = (Dir) mod_int(agents[agent_index].get_dir() + 1, 4);
+      Dir dir = (Dir) mod_int(agents[agent_index].get_dir() + 1, DIR_COUNT);
 
-      agents[agent_index].set_dir(new_direction);
+      agents[agent_index].set_dir(dir);
 
     } break;
 
     case ACTION_TURN_RT:
     {
-      Dir new_direction = (Dir) mod_int(agents[agent_index].get_dir() - 1, 4);
+      Dir dir = (Dir) mod_int(agents[agent_index].get_dir() - 1, DIR_COUNT);
       
-      agents[agent_index].set_dir(new_direction);
+      agents[agent_index].set_dir(dir);
 
     } break;
 
@@ -257,8 +262,8 @@ void Game::step_game()
         if (gene->get_state() == agents[i].get_state()
             && gene->get_env() == env_infront_of_agent(i))
         {
-          execute_action(i, chromos[i].get_gene(j)->get_action());
-          agents[i].set_state(chromos[i].get_gene(j)->get_next_state());
+          execute_action(i, gene->get_action());
+          agents[i].set_state(gene->get_next_state());
           break;
         }
       }

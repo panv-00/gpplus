@@ -15,6 +15,8 @@ public:
   int get_x () { return x; };
   int get_y () { return y; };
 
+  bool is_equal(Point point);
+
 protected:
 
 private:

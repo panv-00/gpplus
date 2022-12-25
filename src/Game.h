@@ -17,8 +17,8 @@ public:
 
   Point  get_free_location();
   void   init_game();
-  int    agent_at(int pos_x, int pos_y);
-  Point  point_infront_of_agent(Agent *agent);
+  int    agent_at(int x, int y);
+  Point  point_infront_of_agent(size_t agent_index);
   Env    env_infront_of_agent(size_t agent_index);
   int    food_infront_of_agent(size_t agent_index);
   int    agent_infront_of_agent(size_t agent_index);
