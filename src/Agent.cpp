@@ -1,6 +1,6 @@
 #include "Agent.h"
 
-Agent::Agent()
+Agent::Agent() : pos(0, 0)
 {
 
 }

@@ -1,6 +1,6 @@
 #include "Food.h"
 
-Food::Food()
+Food::Food() : pos(0, 0)
 {
 
 }

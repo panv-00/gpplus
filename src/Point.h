@@ -6,7 +6,7 @@
 class Point
 {
 public:
-   Point();
+   Point(int x, int y);
   ~Point();
 
   void set_x(int x) { this->x = x; };

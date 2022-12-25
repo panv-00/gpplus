@@ -21,26 +21,26 @@
 #define SCREEN_WIDTH     800
 #define SCREEN_HEIGHT    800
 
-#define BOARD_WIDTH      8
-#define BOARD_HEIGHT     8
+#define BOARD_WIDTH      25
+#define BOARD_HEIGHT     25
 
 #define CELL_WIDTH       ((float) SCREEN_WIDTH  / BOARD_WIDTH )
 #define CELL_HEIGHT      ((float) SCREEN_HEIGHT / BOARD_HEIGHT)
 
-#define AGENTS_COUNT     2
+#define AGENTS_COUNT     30
 #define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 #define ATTACK_DAMAGE    10
 
-#define FOODS_COUNT      5
+#define FOODS_COUNT      300
 #define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
-#define FOOD_VALUE       10
+#define FOOD_VALUE       50
 #define HUNGER_MAX       100
 #define HUNGER_STEP      5
 
-#define WALLS_COUNT      5
+#define WALLS_COUNT      20
 #define WALL_PADDING     0
 
-#define GENES_COUNT      20
+#define GENES_COUNT      200
 #define STATES_COUNT     4
 
 
