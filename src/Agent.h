@@ -7,8 +7,8 @@
 class Agent
 {
 public:
-   Agent();
-  ~Agent();
+  Agent();
+ ~Agent();
 
   void set_pos      (Point pos   ) { this->pos.set_x(pos.get_x());
                                      this->pos.set_y(pos.get_y());          };

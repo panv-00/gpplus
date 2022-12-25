@@ -6,8 +6,8 @@
 class Point
 {
 public:
-   Point(int x, int y);
-  ~Point();
+  Point(int x, int y);
+ ~Point();
 
   void set_x(int x) { this->x = x; };
   void set_y(int y) { this->y = y; };

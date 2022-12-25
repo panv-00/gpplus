@@ -6,8 +6,8 @@
 class Gene
 {
 public:
-   Gene();
-  ~Gene();
+  Gene();
+ ~Gene();
 
   State  get_state     () { return state;      };
   Env    get_env       () { return env;        };

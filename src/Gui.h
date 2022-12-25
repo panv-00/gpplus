@@ -10,8 +10,8 @@
 class Gui
 {
 public:
-   Gui();
-  ~Gui();
+  Gui();
+ ~Gui();
 
   void redraw();
   void print_agent_at(int x, int y);

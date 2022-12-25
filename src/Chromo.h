@@ -7,8 +7,8 @@
 class Chromo
 {
 public:
-   Chromo();
-  ~Chromo();
+  Chromo();
+ ~Chromo();
 
   size_t get_count(         ) { return count;         };
   Gene   *get_gene(int index) { return &genes[index]; };

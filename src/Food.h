@@ -7,8 +7,8 @@
 class Food
 {
 public:
-   Food();
-  ~Food();
+  Food();
+ ~Food();
 
   void set_eaten(bool eaten) { this->eaten = eaten;          };
   void set_pos  (Point pos ) { this->pos.set_x(pos.get_x());

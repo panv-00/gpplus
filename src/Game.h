@@ -12,8 +12,8 @@
 class Game
 {
 public:
-   Game();
-  ~Game();
+  Game();
+ ~Game();
 
   Point  get_free_location();
   void   init_game();

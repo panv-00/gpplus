@@ -7,8 +7,8 @@
 class Wall
 {
 public:
-   Wall();
-  ~Wall();
+  Wall();
+ ~Wall();
 
   void set_pos  (Point pos  ) { this->pos.set_x(pos.get_x());
                                 this->pos.set_y(pos.get_y()); };
