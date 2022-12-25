@@ -32,9 +32,9 @@
 #define ATTACK_DAMAGE    10
 
 #define FOODS_COUNT      300
-#define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 8.0f)
+#define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 3.0f)
 #define FOOD_VALUE       50
-#define HUNGER_MAX       100
+#define HUNGER_MAX       1000
 #define HUNGER_STEP      5
 
 #define WALLS_COUNT      20

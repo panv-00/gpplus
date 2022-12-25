@@ -174,7 +174,7 @@ void Gui::print_agent_at(int x, int y)
   {
     printf("\n\nAgent # %3d:\n", index);
     game->get_agent(index)->print();
-    printf("\nEnv: %s", env_to_cstr(game->env_infront_of_agent(index)));
+    printf("\nEnv: %s\n", env_to_cstr(game->env_infront_of_agent(index)));
     //game->get_chromo(index)->print();
   }
 }

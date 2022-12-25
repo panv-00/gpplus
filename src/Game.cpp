@@ -66,6 +66,7 @@ void Game::init_game()
     agents[i].set_dir((Dir) random_int_range(0, 4));
     agents[i].set_hunger(100);
     agents[i].set_health(100);
+    agents[i].set_lifetime(0);
    
     // Init Genes
     for (size_t j = 0; j < GENES_COUNT; j++)
@@ -269,6 +270,9 @@ void Game::step_game()
       {
         agents[i].set_health(0);
       }
+
+      // Update lifetime
+      agents[i].set_lifetime(agents[i].get_lifetime() + 1);
     }
   }
 }
