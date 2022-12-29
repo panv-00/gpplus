@@ -31,7 +31,7 @@
 #define AGENT_PADDING    (fminf(CELL_WIDTH, CELL_HEIGHT) / 5.0f)
 #define ATTACK_DAMAGE    10
 
-#define FOODS_COUNT      200
+#define FOODS_COUNT      500
 #define FOOD_PADDING     (fminf(CELL_WIDTH, CELL_HEIGHT) / 3.0f)
 #define FOOD_VALUE       50
 #define HUNGER_MAX       1000
@@ -40,7 +40,7 @@
 #define WALLS_COUNT      20
 #define WALL_PADDING     0
 
-#define GENES_COUNT      200
+#define GENES_COUNT      2000
 #define STATES_COUNT     4
 
 
